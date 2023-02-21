@@ -1,5 +1,5 @@
 mapboxgl.accessToken =
-  'pk.eyJ1Ijoia3Vza3VzeHlyZW5uIiwiYSI6ImNsZWN4ampubzAxaDczcG16MXcwcWhhcDEifQ.9K3JBDAzq3Ru8riWg49zgw';
+  'pk.eyJ1Ijoia3Vza3VzeHlyZW5uIiwiYSI6ImNsZWM0a2FlMTFmc3IzcHIxNTVtYTdnc3MifQ.nnXVCgPDeh2MzAQa7QOxMg';
 
 navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
   enableHighAccuracy: true,
@@ -16,12 +16,13 @@ function errorLocation() {
 function setupMap(center) {
   const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v12',
+    style: 'mapbox://styles/kuskusxyrenn/clee7ir9c000q01nx3gos6dkf',
     center: [121.0524150628587, 14.682569991056297],
     zoom: 15,
   });
 
   const nav = new mapboxgl.NavigationControl();
+
   map.addControl(nav);
 
   var directions = new MapboxDirections({
