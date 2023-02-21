@@ -17,7 +17,7 @@ function setupMap(center) {
   const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v12',
-    center: center,
+    center: [121.0524150628587, 14.682569991056297],
     zoom: 15,
   });
 
