@@ -10,13 +10,13 @@ function successLocation(position) {
 }
 
 function errorLocation() {
-  setupMap([-2.24, 53.48]);
+  setupMap([121.0524150628587, 14.682569991056297]);
 }
 
 function setupMap(center) {
   const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/mapbox/streets-v12',
     center: center,
     zoom: 15,
   });
@@ -41,4 +41,5 @@ function setupMap(center) {
       showUserHeading: true,
     })
   );
+  map.on('click');
 }
