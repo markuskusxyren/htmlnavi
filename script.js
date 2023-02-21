@@ -41,5 +41,4 @@ function setupMap(center) {
       showUserHeading: true,
     })
   );
-  map.on('click');
 }
