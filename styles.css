@@ -617,16 +617,14 @@ body {
 .btn-circle.btn-xl {
     width: 70px;
     height: 70px;
-    padding: 10px 16px;
+    
     border-radius: 35px;
     font-size: 12px;
     text-align: center;
-    position: relative;
-    z-index: 1000;
-    position:absolute;
-    bottom:25px;
-    right:25px;
-    
+    z-index: 2;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     box-shadow: 5px 4px 5px rgb(201, 201, 201, 0.486);
 }
 
@@ -634,14 +632,15 @@ div.tomblist {
     z-index: 10;
     margin: 30px;
     background: #f8f8f8;
-    position: relative;
     height: 250px;
     width: 200px;
     border-radius: 25px;
-    position:absolute;
-    bottom: 80px;
+    position:fixed;
+    bottom: 70px;
     right: 1px;
     box-shadow: 5px 4px 5px rgba(201, 201, 201, 0.486);
     overflow: scroll;
     visibility: hidden;
   }
+
+  
