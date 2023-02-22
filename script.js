@@ -13,6 +13,25 @@ function errorLocation() {
   setupMap([121.0524150628587, 14.682569991056297]);
 }
 
+function hideList() {
+  var x = document.getElementById('tomblist');
+  if (x.style.display === 'none') {
+    x.style.display = 'block';
+  } else {
+    x.style.display = 'none';
+  }
+}
+
+function flyToTomb() {
+  document.getElementById('LA-4000-1').addEventListener('click', () => {
+    // Fly to a random location
+    map.flyTo({
+      center: [121.0524150628587, 14.682569991056297],
+      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+    });
+  });
+}
+
 function setupMap(center) {
   const map = new mapboxgl.Map({
     container: 'map',
