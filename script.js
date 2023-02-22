@@ -38,6 +38,28 @@ function setupMap(center) {
     });
   });
 
+  const nav = new mapboxgl.NavigationControl();
+
+  map.addControl(nav);
+
+  var directions = new MapboxDirections({
+    accessToken: mapboxgl.accessToken,
+  });
+
+  map.addControl(directions, 'top-left');
+
+  map.addControl(
+    new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true,
+      },
+      // When active the map will receive updates to the device's location as it changes.
+      trackUserLocation: true,
+      // Draw an arrow next to the location dot to indicate which direction the device is heading.
+      showUserHeading: true,
+    })
+  );
+
   document.getElementById('LA-5000A-1').addEventListener('pointerdown', () => {
     const marker1 = new mapboxgl.Marker()
       .setLngLat([121.05275686077329, 14.683122430075883])
@@ -77,26 +99,4 @@ function setupMap(center) {
       essential: true, // this animation is considered essential with respect to prefers-reduced-motion
     });
   });
-
-  const nav = new mapboxgl.NavigationControl();
-
-  map.addControl(nav);
-
-  var directions = new MapboxDirections({
-    accessToken: mapboxgl.accessToken,
-  });
-
-  map.addControl(directions, 'top-left');
-
-  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true,
-      },
-      // When active the map will receive updates to the device's location as it changes.
-      trackUserLocation: true,
-      // Draw an arrow next to the location dot to indicate which direction the device is heading.
-      showUserHeading: true,
-    })
-  );
 }
