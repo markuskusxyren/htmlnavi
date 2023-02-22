@@ -166,7 +166,7 @@ body {
   width: 20px;
   height: 20px;
   vertical-align: middle;
-  speak: none;
+  
   background-repeat: no-repeat;
 }
 .geocoder-icon-search {
@@ -298,7 +298,7 @@ body {
 }
 .mapbox-directions-profile label {
   cursor: pointer;
-  vertical-align: top;
+  
   display: block;
   border-radius: 16px;
   padding: 3px 5px;
@@ -361,8 +361,7 @@ body {
   font-size: 15px;
   line-height: 28px;
 }
-.mapbox-directions-route-summary + .mapbox-directions-instructions {
-}
+
 .mapbox-directions-route-summary h1 {
   font-weight: 500;
   margin: 0;
@@ -552,7 +551,7 @@ body {
   width: 20px;
   height: 20px;
   vertical-align: middle;
-  speak: none;
+  
   background-repeat: no-repeat;
 }
 .directions-icon-arrive {
@@ -644,4 +643,5 @@ div.tomblist {
     right: 1px;
     box-shadow: 5px 4px 5px rgba(201, 201, 201, 0.486);
     overflow: scroll;
+    visibility: hidden;
   }

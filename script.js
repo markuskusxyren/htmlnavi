@@ -1,5 +1,5 @@
 mapboxgl.accessToken =
-  'pk.eyJ1Ijoia3Vza3VzeHlyZW5uIiwiYSI6ImNsZWM0a2FlMTFmc3IzcHIxNTVtYTdnc3MifQ.nnXVCgPDeh2MzAQa7QOxMg';
+  'pk.eyJ1Ijoia3Vza3VzeHlyZW5uIiwiYSI6ImNsZWN4ampubzAxaDczcG16MXcwcWhhcDEifQ.9K3JBDAzq3Ru8riWg49zgw';
 
 navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
   enableHighAccuracy: true,
@@ -14,22 +14,10 @@ function errorLocation() {
 }
 
 function hideList() {
-  var x = document.getElementById('tomblist');
-  if (x.style.display === 'none') {
-    x.style.display = 'block';
-  } else {
-    x.style.display = 'none';
-  }
-}
-
-function flyToTomb() {
-  document.getElementById('LA-4000-1').addEventListener('click', () => {
-    // Fly to a random location
-    map.flyTo({
-      center: [121.0524150628587, 14.682569991056297],
-      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-    });
-  });
+  var node = document.getElementById('tomblist');
+  if (node.style.visibility == 'visible') {
+    node.style.visibility = 'hidden';
+  } else node.style.visibility = 'visible';
 }
 
 function setupMap(center) {
@@ -38,6 +26,56 @@ function setupMap(center) {
     style: 'mapbox://styles/kuskusxyrenn/clee7ir9c000q01nx3gos6dkf',
     center: [121.0524150628587, 14.682569991056297],
     zoom: 15,
+  });
+
+  document.getElementById('LA-4000-1').addEventListener('pointerdown', () => {
+    const marker1 = new mapboxgl.Marker()
+      .setLngLat([121.0529244419917, 14.683703093633426])
+      .addTo(map);
+    map.flyTo({
+      center: [121.0529244419917, 14.683703093633426],
+      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+    });
+  });
+
+  document.getElementById('LA-5000A-1').addEventListener('pointerdown', () => {
+    const marker1 = new mapboxgl.Marker()
+      .setLngLat([121.05275686077329, 14.683122430075883])
+      .addTo(map);
+    map.flyTo({
+      center: [121.05275686077329, 14.683122430075883],
+      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+    });
+  });
+
+  document.getElementById('CM-8B-30').addEventListener('pointerdown', () => {
+    const marker1 = new mapboxgl.Marker()
+      .setLngLat([121.0533485642215, 14.6830785592648283])
+      .addTo(map);
+    map.flyTo({
+      center: [121.0533485642215, 14.683078559264828],
+      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+    });
+  });
+
+  document.getElementById('LA-1000A-1').addEventListener('pointerdown', () => {
+    const marker1 = new mapboxgl.Marker()
+      .setLngLat([121.05035921259355, 14.681573317832914])
+      .addTo(map);
+    map.flyTo({
+      center: [121.05035921259355, 14.681573317832914],
+      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+    });
+  });
+
+  document.getElementById('FM-BB-22c').addEventListener('pointerdown', () => {
+    const marker1 = new mapboxgl.Marker()
+      .setLngLat([121.05123791357988, 14.683160068452992])
+      .addTo(map);
+    map.flyTo({
+      center: [121.05123791357988, 14.683160068452992],
+      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+    });
   });
 
   const nav = new mapboxgl.NavigationControl();
