@@ -28,16 +28,6 @@ function setupMap(center) {
     zoom: 15,
   });
 
-  document.getElementById('LA-4000-1').addEventListener('pointerdown', () => {
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat([121.0529244419917, 14.683703093633426])
-      .addTo(map);
-    map.flyTo({
-      center: [121.0529244419917, 14.683703093633426],
-      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-    });
-  });
-
   const nav = new mapboxgl.NavigationControl();
 
   map.addControl(nav);
@@ -59,6 +49,16 @@ function setupMap(center) {
       showUserHeading: true,
     })
   );
+
+  document.getElementById('LA-4000-1').addEventListener('pointerdown', () => {
+    const marker1 = new mapboxgl.Marker()
+      .setLngLat([121.0529244419917, 14.683703093633426])
+      .addTo(map);
+    map.flyTo({
+      center: [121.0529244419917, 14.683703093633426],
+      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+    });
+  });
 
   document.getElementById('LA-5000A-1').addEventListener('pointerdown', () => {
     const marker1 = new mapboxgl.Marker()
