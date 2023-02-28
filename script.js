@@ -23,7 +23,7 @@ function hideList() {
 function setupMap(center) {
   const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/kuskusxyrenn/clee7ir9c000q01nx3gos6dkf',
+    style: 'mapbox://styles/kuskusxyrenn/clee7imbg000p01nx6ah0pt8w',
     center: [121.0524150628587, 14.682569991056297],
     zoom: 15,
   });
