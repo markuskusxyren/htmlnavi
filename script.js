@@ -1,3 +1,6 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js';
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js';
+
 mapboxgl.accessToken =
   'pk.eyJ1Ijoia3Vza3VzeHlyZW5uIiwiYSI6ImNsZWN4ampubzAxaDczcG16MXcwcWhhcDEifQ.9K3JBDAzq3Ru8riWg49zgw';
 
@@ -13,11 +16,54 @@ function errorLocation() {
   setupMap([121.0524150628587, 14.682569991056297]);
 }
 
-function hideList() {
-  var node = document.getElementById('tomblist');
-  if (node.style.visibility == 'visible') {
-    node.style.visibility = 'hidden';
-  } else node.style.visibility = 'visible';
+function getUnitCoordinates(unitId) {
+  const unitRef = db.collection('units').doc(unitId);
+
+  unitRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        const coordinates = [data.longitude, data.latitude];
+        plotUnitOnMap(coordinates);
+      } else {
+        console.log('No such document!');
+      }
+    })
+    .catch((error) => {
+      console.log('Error getting document:', error);
+    });
+}
+
+function plotUnitOnMap(coordinates) {
+  const marker = new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+  map.flyTo({
+    center: coordinates,
+    essential: true,
+  });
+}
+
+function loadUnits() {
+  const tomblist = document.getElementById('tomblist');
+
+  db.collection('units')
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const unitId = doc.id;
+
+        const button = document.createElement('button');
+        button.setAttribute('type', 'button');
+        button.classList.add('list-group-item', 'list-group-item-action');
+        button.textContent = unitId;
+        button.onclick = function () {
+          getUnitCoordinates(unitId);
+        };
+
+        tomblist.appendChild(button);
+      });
+    });
 }
 
 function setupMap(center) {
@@ -49,54 +95,23 @@ function setupMap(center) {
       showUserHeading: true,
     })
   );
-
-  document.getElementById('LA-4000-1').addEventListener('pointerdown', () => {
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat([121.0529244419917, 14.683703093633426])
-      .addTo(map);
-    map.flyTo({
-      center: [121.0529244419917, 14.683703093633426],
-      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-    });
-  });
-
-  document.getElementById('LA-5000A-1').addEventListener('pointerdown', () => {
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat([121.05275686077329, 14.683122430075883])
-      .addTo(map);
-    map.flyTo({
-      center: [121.05275686077329, 14.683122430075883],
-      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-    });
-  });
-
-  document.getElementById('CM-8B-30').addEventListener('pointerdown', () => {
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat([121.0533485642215, 14.6830785592648283])
-      .addTo(map);
-    map.flyTo({
-      center: [121.0533485642215, 14.683078559264828],
-      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-    });
-  });
-
-  document.getElementById('LA-1000A-1').addEventListener('pointerdown', () => {
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat([121.05035921259355, 14.681573317832914])
-      .addTo(map);
-    map.flyTo({
-      center: [121.05035921259355, 14.681573317832914],
-      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-    });
-  });
-
-  document.getElementById('FM-BB-22c').addEventListener('pointerdown', () => {
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat([121.05123791357988, 14.683160068452992])
-      .addTo(map);
-    map.flyTo({
-      center: [121.05123791357988, 14.683160068452992],
-      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-    });
-  });
 }
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyAYtbg3SniEAIgQRSM6rReVCQ3UXC22yE4',
+  authDomain: 'himinavi-e3f9f.firebaseapp.com',
+  projectId: 'himinavi-e3f9f',
+  storageBucket: 'himinavi-e3f9f.appspot.com',
+  messagingSenderId: '357516927893',
+  appId: '1:357516927893:web:8285ade1046c68d1b90c9c',
+  measurementId: 'G-WKZE7R1VHT',
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function init() {
+  loadUnits();
+}
+
+init();
